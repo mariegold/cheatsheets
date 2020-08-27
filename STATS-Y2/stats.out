@@ -1,0 +1,33 @@
+\BOOKMARK [3][-]{section*.1}{Useful Properties}{}% 1
+\BOOKMARK [2][-]{section*.2}{Sample Mean}{}% 2
+\BOOKMARK [2][-]{section*.3}{Sample Variance}{}% 3
+\BOOKMARK [2][-]{section*.4}{Sample Covariance and Correlation}{}% 4
+\BOOKMARK [2][-]{section*.5}{Maximum Likelihood Estimators \(MLEs\)}{}% 5
+\BOOKMARK [3][-]{section*.6}{Properties of the Sample Mean and Variance for the Normal Distribution}{section*.5}% 6
+\BOOKMARK [2][-]{section*.7}{Normal Distribution with Known Variance}{}% 7
+\BOOKMARK [2][-]{section*.8}{Normal Distribution with Unknown Variance}{}% 8
+\BOOKMARK [3][-]{section*.9}{2 Distribution}{section*.8}% 9
+\BOOKMARK [3][-]{section*.10}{t Distribution}{section*.8}% 10
+\BOOKMARK [1][-]{section*.11}{Hypothesis Testing}{}% 11
+\BOOKMARK [2][-]{section*.12}{z-test}{section*.11}% 12
+\BOOKMARK [2][-]{section*.13}{One Sample t-test}{section*.11}% 13
+\BOOKMARK [2][-]{section*.14}{Paired t-test}{section*.11}% 14
+\BOOKMARK [2][-]{section*.15}{Two Sample t-test}{section*.11}% 15
+\BOOKMARK [2][-]{section*.16}{F-test for Equality of Variance}{section*.11}% 16
+\BOOKMARK [3][-]{section*.17}{F Distribution}{section*.16}% 17
+\BOOKMARK [3][-]{section*.18}{One-sided Tests}{section*.16}% 18
+\BOOKMARK [1][-]{section*.19}{Linear Regression}{}% 19
+\BOOKMARK [2][-]{section*.20}{Least-Squares Estimation}{section*.19}% 20
+\BOOKMARK [2][-]{section*.21}{Simple Linear Regression}{section*.19}% 21
+\BOOKMARK [3][-]{section*.22}{Regression using R}{section*.21}% 22
+\BOOKMARK [3][-]{section*.23}{Confidence Interval for E\(Y0\)}{section*.21}% 23
+\BOOKMARK [3][-]{section*.24}{Prediction Interval for Y0}{section*.21}% 24
+\BOOKMARK [2][-]{section*.25}{Multiple Regression}{section*.19}% 25
+\BOOKMARK [3][-]{section*.26}{F-test for Model Comparison}{section*.25}% 26
+\BOOKMARK [1][-]{section*.27}{Analysis of Variance}{}% 27
+\BOOKMARK [2][-]{section*.28}{One-way ANOVA}{section*.27}% 28
+\BOOKMARK [3][-]{section*.29}{Least Significant Differences \(LSD\)}{section*.28}% 29
+\BOOKMARK [2][-]{section*.30}{Two-way ANOVA}{section*.27}% 30
+\BOOKMARK [3][-]{section*.31}{LSD for two-way ANOVA}{section*.30}% 31
+\BOOKMARK [2][-]{section*.32}{Two-way ANOVA with r replications}{section*.27}% 32
+\BOOKMARK [3][-]{section*.33}{LSD for two-way ANOVA with replications}{section*.32}% 33

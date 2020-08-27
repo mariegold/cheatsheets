@@ -1,0 +1,405 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Environments
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+% Multicolumn
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{Statistics} \\
+     \footnotesize{Marie Biolkov\'a}
+\end{center}
+
+		\subsubsection{Useful Properties}
+		Always:
+		\begin{align*}
+			\E(aX+b) = a \E(X) + b \\
+			\E(X+Y) = \E(X) + \E(Y)\\
+			\Var(aX+b)=a^2\Var(X) 
+		\end{align*}
+		
+		Only if \emph{independent}:
+		\begin{align*}
+			\E(XY) = \E(X)\E(Y)\\
+			\Var(X+Y) = \Var(X) + \Var(Y)\\
+			\Var(X-Y) = \Var(X) + \Var(Y) \\
+			\Var\left(\displaystyle \sum_{i=1}^n X_i \right) = \sum_{i=1}^n \Var(X_i)
+		\end{align*}
+
+	\subsection{Sample Mean}
+	Unbiased and consistent estimator of $\mu$.
+		$$\bar{X} = \frac{1}{n} \displaystyle \sum_{i=1}^{n} X_i $$
+
+	\subsection{Sample Variance}
+		$$S^2 = \frac{1}{n-1} \displaystyle \sum_{i=1}^{n} (X_i-\bar{X})^2 = \frac{1}{n-1} \left( \displaystyle \sum_{i=1}^{n} X_i^2 - \frac{1}{n} \left( \displaystyle \sum_{i=1}^{n} X_i\right)^2 \right) $$
+	\begin{itemize}
+		\item Unbiased and consistent estimator of $\sigma^2$. \\
+		\item Since $\Var(X) = \E(X^2) - (\E(X))^2$ we have that $\Var(\bar{X}) = \frac{\sigma^2}{n}$ so we can estimate $\Var(\bar{X}) $ by $\frac{S^2}{n}$.
+	\end{itemize}
+
+	\subsection{Sample Covariance and Correlation}
+	\begin{align*}
+		\Cov(X,Y) = \E(XY) -\E(X)\E(Y) \quad \text{ (covariance)} \\
+		\rho(X,Y) = \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}} \quad \text{ (correlation)}
+	\end{align*}
+	
+	Sample Covariance:
+	\begin{align*}
+		S_{xy} &= \frac{1}{n-1} \displaystyle \sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y}) \\ &= \frac{1}{n-1} \left[ \displaystyle \sum_{i=1}^{n} X_i Y_i - \frac{1}{n} \left( \displaystyle 	\sum_{i=1}^{n} X_i \right) \left(\displaystyle \sum_{i=1}^{n} Y_i \right) \right] 
+	\end{align*}
+	\begin{itemize}
+		\item Unbiased and consistent estimator of $\Cov(X,Y)$ \\
+		\item $S_{xx}$ and $S_{yy}$ are the sample variances for $X$ and $Y$, recall $\Cov(X,X) = \Var(X)$. \\
+	\end{itemize}
+
+	Sample Correlation: 
+	$$R_{xy} = \frac{S_{xy}}{S_x S_y} $$
+
+	\subsection{Maximum Likelihood Estimators (MLEs)}
+	Assuming the data are independent, the \emph{likelihood function} is $$ L(\theta; x_1,...,x_n) = \displaystyle \prod_{i=1}^{n} f(x_i;\theta). $$
+	The \emph{log-likelihood} is therefore $$ l(\theta; x_1,...,x_n) = \displaystyle \sum_{i=1}^{n} \log{f(x_i;\theta)}.$$
+	\begin{itemize}
+		\item $\hat{\sigma}^2$ is not the sample variance $S^2$. \\
+		\item In general MLEs are biased estimators. \\
+		\item Consistent estimators.
+	\end{itemize}
+
+	\textbf{Invariance Property of MLEs}: Let $\hat{\theta}$ be the MLE of $\theta$ and $g$ be any function of $\theta$. Then the MLE of $g(\theta) $ is $g(\hat{\theta})$.
+
+		\subsubsection{Properties of the Sample Mean and Variance for the Normal Distribution}
+		Let $X_1,..,X_n$ be independent $N(\mu,\sigma^2)$ rvs, then 
+		\begin{itemize}
+			\item $\displaystyle \frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}} \sim N(0,1)$
+			\item $ \displaystyle \frac{(n-1)S^2}{\sigma^2} \sim \chi_{n-1}^2$
+			\item $\bar{X}$ and $S^2$ are independent.
+		\end{itemize}
+
+	\subsection{Normal Distribution with Known Variance}
+	Assume $X_1,...,X_n \sim N(\mu, \sigma^2)$ are independent rvs, $\sigma^2$ known. Recall $\bar{X} \sim N(\mu, \frac{\sigma^2}{n})$ then the linear transform $$Z = \frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}$$ is such that $Z \sim N(0,1)$. 
+
+	The $(1-\alpha)\%$ \emph{confidence interval} for $\mu$ is given by $$ \bar{x} \pm \frac{z_{\alpha/2} \sigma}{\sqrt{n}}.$$
+	\begin{itemize}
+		\item To calculate $z_{\alpha/2}$ in \texttt{R} use \texttt{qnorm(1-alpha/2, 0,1)}, e.g. \texttt{qnorm(0.975, 0,1)} for 95\% CI. \\
+		\item CI is larger for smaller sample size. \\
+		\item Higher \% confidence interval results in wider interval.
+	\end{itemize}
+
+	\subsection{Normal Distribution with Unknown Variance}
+	Assume $X_1,...,X_n \sim N(\mu, \sigma^2)$ are independent rvs, $\sigma^2$ unknown. Consider $$ T = \frac{\bar{X}-\mu}{\sqrt{S^2/n}}.$$
+
+		\subsubsection{$\chi^2$ Distribution}
+		Let $Z_1,..,Z_n$ be independent $N(0,1)$ rvs and $ X = \sum_{i=1}^{n} Z_{i}^2$. Then $X$ has chi-squared distribution with $n$ degrees of freedom, $ X \sim \chi_{n}^2$.
+		\begin{itemize}
+			\item $X$ is a continuous rv and $x \geq 0$.
+			\item Let $Z \sim N(0,1)$ and $Y = Z^2$. Then $Y \sim \chi_1 ^2$.
+			\item Let $  X \sim \chi_{n}^2$ and $ Y \sim \chi_{m}^2$, independently. Then $X+Y \sim \chi_{n+m}^2$. 
+			\item If  $X \sim \chi_{n}^2$ then $\E(X) = n$ and $\Var(X) = 2n$.
+		\end{itemize}
+
+		\subsubsection{$t$ Distribution}
+		Let $X$ and $Y$ be independent rvs such that $Z \sim N(0,1)$ and $Y \sim \chi_n ^2$. Let $ T = \frac{Z}{\sqrt{Y/n}}$, then $T$ has a $t$-distribution with $n$ degrees of freedom, i.e. $T \sim t_n$.
+		\begin{itemize}
+			\item $T$ is a continuous rv, $t \in \mathbb{R}$.
+			\item As $n \rightarrow \infty, t_n \rightarrow N(0,1)$.
+			\item If $T \sim t_n$ the $\E(T) = 0$ and $\Var(T) = n/(n-1)$ for $n>2$.
+			\item Denote $t_{n;\alpha}$ the \emph{upper $\alpha$ quantile}, i.e. $\Prob(T\geq t_{n;\alpha}) = \alpha$. 
+			\item Symmetrical about 0. %so $\Prob(T \geq t) = \Prob(T \leq -t)$ and $t_{n;\alpha} = -t_{n;1-\alpha}$.
+		\end{itemize}
+		
+		$$\frac{\bar{X}-\mu}{\sqrt{S^2/n}} \sim t_{n-1}$$
+		The $(1-\alpha)\%$ \emph{confidence interval} for $\mu$ is $$ \bar{x} \pm t_{n-1;\alpha/2} \frac{s}{\sqrt{n}}.$$
+
+
+		\begin{itemize}
+			\item To calculate $t_{n-1;\alpha/2}$ in \texttt{R} use \texttt{qt(1-alpha/2, n-1)}.
+			\item The CI is larger when the variance is unknown.
+		\end{itemize}
+
+\section{Hypothesis Testing}
+\begin{itemize}
+	\item \emph{Type I error}: Reject $H_0$ when it is in fact true.
+	\item \emph{Type II error}: Fail to reject $H_0$ when it is false.
+	\item \emph{Significance level $\alpha$}: Probability that we reject $H_0$ when it is true, $\Prob(\text{Type I error}) = \alpha$.
+	\item \emph{Power $\beta$}: Probability that we reject $H_0$ when it is false, $\Prob(\text{Type II error}) = 1-\beta$.
+	\item \emph{Power function}: $\beta(\theta) = \Prob(\text{reject } H_0 : \theta = \theta_0 \text{ when the true value is } \theta)$.
+	\item \emph{Test statistic}: Function of the data chosen, is expected to take a different range of values when $H_0$ is true than when it is false.
+	\item \emph{Critical region C} The set of values of $t$ that lead us to reject $H_0$.    
+	\item \emph{p-value} is the probability of observing a result at least as extreme as $t$ if $H_0$ is true. \\
+		-- $p$-value small ($< \alpha$): reject $H_0$. \\
+		-- $p$-value large ($\geq \alpha$):  no evidence to reject $H_0$. 
+\end{itemize}
+Increasing sample size means we are more likely to reject $H_0$ if it is false.
+
+	\subsection{$z$-test}
+	$X_1,...,X_n$ independent $N(\mu, \sigma^2)$ rvs, $\sigma^2$ known.
+	\begin{enumerate}
+		\item $ H_0 : \mu = \mu_0$ \quad vs \quad $ H_1 : \mu \neq \mu_0$
+		\item Test statistic: $\displaystyle T = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}$, then under $H_0$, $T \sim N(0,1)$.
+		\item Critical region: $\displaystyle |T| =\left| \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \right| \geq z_{\alpha/2}$.
+		\item $p$-value: $\Prob(|T| \geq t_0) = 2 \Prob(T \geq t_0) = 2\Prob(T \leq -t_0)$\footnote{$t_0$ is the upper quantile, $-t_0$ is the lower quantile.}.
+	\end{enumerate}
+
+	\subsection{One Sample $t$-test}
+	$X_1,...,X_n$ independent $N(\mu, \sigma^2)$ rvs, $\sigma^2$ unknown.
+	\begin{enumerate}
+		\item $ H_0 : \mu = \mu_0$ \quad vs \quad $ H_1 : \mu \neq \mu_0$
+		\item Test statistic: $\displaystyle T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}}$, then under $H_0$, $T \sim t_{n-1}$.
+		\item Critical region: reject $H_0$ if $|T| \geq t_0 = t_{n-1;\alpha/2}$.
+		\item $p$-value: $\Prob(|T| \geq t_0) = 2 \Prob(T \geq t_0) = 2\Prob(T \leq -t_0)$
+	\end{enumerate}
+
+	\subsection{Paired $t$-test}
+	Paired data $(X_1,Y_1),...(X_n,Y_n)$ where the two measurements are dependent. Consider the difference such that $D_i = Y_i-X_i$ for $i = 1,...,n$.  \\
+	Assume $D_i \overset{\text{iid}}{\sim} N(\mu, \sigma^2)$ - observed differences are independent of each other and observations are from normal distribution with mean $\mu$ and unknown variance $\sigma^2$. \\
+	Reduces to a one-sample $t$-test.
+	\begin{enumerate}
+		\item $ H_0 : \mu = 0$ \quad vs \quad $ H_1 : \mu \neq 0$
+		\item Test statistic: $\displaystyle T = \frac{\bar{D}}{S/\sqrt{n}}$, then under $H_0$, $T \sim t_{n-1}$.
+	\end{enumerate}
+
+	\subsection{Two Sample $t$-test}
+	Suppose we have two sets of independent rvs $X_1,...,X_n$ and $Y_1,...,Y_m$ such that $X_i \sim N(\mu_X, \sigma^2), Y_i \sim N(\mu_y,\sigma^2).$ 
+	\begin{align*}
+		\frac{(n-1)S_X^2}{\sigma^2} \sim \chi_{n-1}^2 \quad \frac{(m-1)S_Y^2}{\sigma^2} \sim \chi_{m-1}^2 
+	\end{align*}
+	Pooled sample variance: $$S_p^2 = \frac{(n-1)S_X^2 + (m-1)S_Y^2}{m+n-2}$$
+	
+	\begin{enumerate}
+		\item $ H_0 : \mu_X = \mu_Y$ \quad vs \quad $ H_1 : \mu_X \neq \mu_Y$
+		\item Test statistic: $\displaystyle T = \frac{\bar{X} - \bar{Y}}{S_p  \sqrt{\frac{1}{m} + \frac{1}{n}}}$, then under $H_0$, $T \sim t_{m+n-2}$.
+		\item Critical region: reject $H_0$ if $|T| \geq t_0 = t_{m+n-2;\alpha/2}$.
+		\item $p$-value: $\Prob(|T| \geq t_0) = 2 \Prob(T \geq t_0) = 2\Prob(T \leq -t_0)$
+	\end{enumerate}
+
+	\subsection{$F$-test for Equality of Variance}
+	Suppose we have two independent normal rvs $X_1,...,X_n$ and $Y_1,...,Y_m$ with variances $\sigma_X^2, \sigma_Y^2$.
+	\begin{enumerate}
+		\item $ H_0 : \sigma_X^2 = \sigma_Y^2$ \quad vs \quad $ H_1 : \sigma_X^2 \neq \sigma_Y^2$
+		\item Test statistic: $\displaystyle T = \frac{S_X^2}{S_Y^2}$, then under $H_0$, $F \sim F_{n-1,m-1}$.
+	\end{enumerate}
+
+		\subsubsection{$F$ Distribution}
+		$U \sim \chi_m^2, V \sim \chi_n^2$ independent rvs. Then $\displaystyle X = \frac{U/m}{V/n}$ has an $F$ distribution with $m,n$ degrees of freedom ($X \sim F_{m,n}).$
+		\begin{itemize}
+			\item $1/X \sim F_{n,m}$
+			\item Upper $\alpha$ quantile $F_{m,n;\alpha}$ is such that $\Prob(X \geq F_{m,n;\alpha}) = \alpha$, lower quantile $F_{m,n;1-\alpha} = 1 / F_{n,m;\alpha}$.
+			\item \texttt{pf} and \texttt{qf} commands in \texttt{R}
+		\end{itemize}
+
+		\subsubsection{One-sided Tests}
+		$ H_0 : \theta = \theta_0$ \quad vs \quad $ H_1 : \theta > \theta_0$ \\
+		$ H_0 : \theta = \theta_0$ \quad vs \quad $ H_1 : \theta < \theta_0$
+
+
+\section{Linear Regression}
+$$\E(Y) = \alpha + \beta x$$
+
+	\subsubsection{Least-Squares Estimation}
+	Want to find $\hat{\alpha}, \hat{\beta}$ that minimise the sum of squares $$S(\alpha,\beta) = \displaystyle \sum_{i=1}^{n} [y_i-(\alpha+\beta x_i)]^2 = \displaystyle \sum_{i=1}^n \epsilon_i^2 .$$
+	$$\hat{\alpha} = \bar{y} - \hat{\beta}\bar{x} \qquad \hat{\beta} = \frac{S_{XY}}{S_{XX}} $$
+
+	\begin{itemize}
+		\item Requires no assumptions about the distribution.
+		\item $\hat{\alpha}, \hat{\beta}$ are rvs, unbiased and consistent estimators of $\alpha, \beta$.
+	\end{itemize}
+
+	\subsection{Simple Linear Regression}
+	Assume $Y_1,...,Y_n$ are independent, normally distributed rvs with common variance, and have a mean that is a linear function of the explanatory variable, i.e $Y_i \overset{\text{iid}}{\sim} N(\alpha + \beta x_i, \sigma^2) \quad i = 1,...,n$.
+
+	$$\hat{\alpha} \sim N \left(\alpha, \sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{S_{XX}} \right)\right) \qquad \hat{\beta} \sim N\left(\beta, \frac{\sigma^2}{S_{XX}}\right)$$
+	$$S^2 = \frac{1}{n-2} \displaystyle \sum_{i=1}^n (Y_i - \hat{y_i})^2 \qquad \hat{y_i} = \hat{\alpha} + \hat{\beta}x_i \text{ (fitted value)}$$
+
+	\begin{itemize}
+		\item $S^2$ is an unbiased estimator of $\sigma^2$ with $\frac{(n-2)S^2}{\sigma^2} \sim \chi_{n-2}^2$.
+		\item $S^2$ is independent of $\hat{\alpha}, \hat{\beta}$ (but $\hat{\alpha}, \hat{\beta}$ are not independent!)
+		\item \emph{Standard errors}: s.e.($\hat{\alpha}) = \sqrt{\Var(\hat{\alpha})}$, s.e.($\hat{\beta}) = \sqrt{\Var(\hat{\beta})}$
+		\item Confidence intervals: 
+			\begin{align*}
+				\hat{\alpha} \pm t_{n-2;0.025} \times s.e.(\hat{\alpha}) \\
+				\hat{\beta} \pm t_{n-2;0.025} \times s.e.(\hat{\beta}).
+			\end{align*}
+	\end{itemize}
+
+		\subsubsection{Regression using \texttt{R}}
+		Command \texttt{lm(y\char`\~ x)}, and \texttt{lm(y\char`\~  x - 1)} for regression through the origin. 
+
+		\subsubsection{Confidence Interval for $\E(Y_0)$}
+		$$\hat{\alpha} + \hat{\beta} x_0 \pm t_{n-2;0.025}\sqrt{s^2 \left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}}\right) } $$
+
+		\begin{itemize}
+			\item Interval for the predicted expectation - they reflect uncertainty in our estimates of average observation.
+		\end{itemize}
+
+		\subsubsection{Prediction Interval for $Y_0$}
+		$$\hat{\alpha} + \hat{\beta} x_0 \pm t_{n-2;0.025}\sqrt{s^2 \left( 1+ \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{XX}}\right) } $$
+
+		\begin{itemize}
+			\item Prediction for a single observation as a function of the explanatory variable - we would expect 95\% of observations to lie within this interval.
+			\item Prediction intervals for $Y_0$ are wider than confidence intervals for $\E(Y_0)$ as they take into account uncertainty relating to the expected value and individual variability. 
+			\item Confidence and prediction intervals become wider as $x_0$ moves away from $\bar{x}$.
+			\item Do not extrapolate beyond the range of data as this is might be very inaccurate.
+		\end{itemize}
+
+	\subsection{Multiple Regression}
+	Assume $Y_i \sim N(\alpha + \beta_1x_{1i} + ..+\beta_k x_{ki}, \sigma^2)$ for $i = 1,...,n$ with  $Y_1,...,Y_n \text{ independent}$, i.e. the observations are independent, normally distributed, have constant variance and the expectations are linearly related to explanatory variables. 
+	$$ \E(Y) = \alpha + \beta_1 x_1 + ... +\beta_k x_k $$
+	The least-squares estimates $\hat{\alpha}, \hat{\beta}_1,...,\hat{\beta}_k$ are values that minimise $$S(\alpha,\beta_1,...,\beta_k) = \displaystyle \sum_{i=1}^{n} [y_i-(\alpha+\beta_{1i} x_i + ... + \beta_k x_{ki})]^2 .$$
+	$$S^2 = \frac{1}{n-(k+1)} \displaystyle \sum_{i=1}^n [Y_i - ( \hat{\alpha} + \hat{\beta}_1 x_{1i} + ... + \hat{\beta}_k x_{ki})]^2 $$
+	Confidence intervals: 
+		\begin{align*}
+			\hat{\alpha} \pm t_{n-(k+1);0.025} \times s.e.(\hat{\alpha}) \\
+			\hat{\beta}_j \pm t_{n-(k+1);0.025} \times s.e.(\hat{\beta}_j).
+		\end{align*}
+	
+	Residual sum of squares (rss): $ \displaystyle \sum_{i=1}^n (Y_i - \hat{y}_i)^2$ . 
+
+		\subsubsection{$F$-test for Model Comparison}
+		Used to see whether or not the full model gives a significantly better fit than a submodel. \\
+		$H_0$ : the specified regression coefficients are zero   \\
+		$H_1$ : there is no restriction on the regression coefficients
+
+\section{Analysis of Variance}
+
+	\subsection{One-way ANOVA}
+	Assume $Y_{ij} \sim N(\mu_i, \sigma^2)$ for $i=1,...,k$ and $j= 1,...,n_i$ independently for all $Y_{ij},$ i.e. the observations are from a normal distribution, independent, have a common variance and a mean only dependent on the group they are member of.
+	\begin{center} $H_0 : \mu_1 = ... = \mu_k$ \quad vs \quad $ H_1 : \mu_1,...,\mu_k$ are not all equal. \end{center}
+	\begin{center}
+		\begin{tabular}{c c c c c c}
+			Source & d.f. & SS & MS & F & p \\
+			\hline
+			Between & $k-1$ & $SS_B$ & $MS_B$ & $F$ & $p$ \\
+			Error & $n-k$ & $SS_W$ & $MS_W$ & & \\
+			\hline
+			Total& $n-1$ & $SS_{Tot}$ & & &\\
+		\end{tabular}
+	\end{center}
+	In \texttt{R}, use \texttt{anova(lm( ))}. Need to express the explanatory variable using \texttt{as.factor}.
+
+	$$ SS_{Tot} = SS_B + SS_W $$
+
+	Between groups mean square: $$ MS_B = \frac{SS_B}{k-1}$$
+	Within groups mean square: $$ MS_W = \frac{SS_W}{n-k} = s^2 \quad \text{ (residual mean square)},$$
+	where $s$ is the \emph{residual standard error}.\\
+	
+	If $H_0$ is true then $F = \frac{MS_B}{MS_W} \sim F_{k-1,n-k}$.\\
+
+		\subsubsection{Least Significant Differences (LSD)}
+		$$t_{n-k;\alpha/2} \sqrt{s^2\left( \frac{1}{n_i} + \frac{1}{n_j} \right)} \text{ or } t_{n-k;\alpha/2} \sqrt{\frac{2s^2}{m} } $$ if the samples are of equal size.
+
+	\subsection{Two-way ANOVA}
+	Assume  $Y_{ij} \sim N(\mu_{ij}, \sigma^2)$ where $\mu_{ij} = \alpha_i +\beta_j$, i.e. the observations are from a normal distribution, independent, have a common 	variance and a mean that is a function of effect of each group.\\
+Consider $b$ blocks, $k$ treatments, $n = bk$.\\
+	\textbf{Test 1 (block effect)}: \\
+	\begin{center} $H_0 : \alpha_1 = ...=\alpha_b$ vs $H_1 : \alpha_1,...,\alpha_b$ are not all equal \end{center}
+	\textbf{Test 2 (treatment effect)}: \\
+	\begin{center} $H_0 : \beta_1 = ...=\beta_k$ vs $H_1 : \beta_1,...,\beta_k$ are not all equal \end{center}
+
+	\begin{center}
+		\begin{tabular}{c c c c c c}
+			Source & d.f. & SS & MS & F & p \\
+			\hline
+			Blocks & $b-1$ & $SS_B$ & $MS_B$ & $F_B$ & $p_B$ \\
+			Treatment & $k-1$ & $SS_T$ & $MS_T$ & $F_T$ & $p_T $\\
+			Error & $(b-1)(k-1)$ & $SS_W$ & $MS_W$ & & \\
+			\hline
+			Total& $bk-1$ & $SS_{Tot}$ & & &\\
+		\end{tabular}
+	\end{center}
+
+	\begin{align*}
+		SS_{Tot} &= SS_B + SS_T + SS_W & \\
+		MS_B &= \frac{SS_B}{b-1} & MS_T = \frac{SS_T}{k-1} \\
+		MS_W &= \frac{SS_W}{(b-1)(k-1)} &\\
+		F_B &= \frac{MS_B}{MS_W} & F_T = \frac{MS_T}{MS_W} 
+	\end{align*}
+
+		\subsubsection{LSD for two-way ANOVA}
+		Block effect: 
+		$$t_{(b-1)(k-1);\alpha/2} \sqrt{2\frac{s^2}{k}}$$
+		Treatment effect: 
+		$$t_{(b-1)(k-1);\alpha/2} \sqrt{2\frac{s^2}{b}}$$
+
+	\subsection{Two-way ANOVA with $r$ replications}
+	\begin{center}
+		\begin{tabular}{c c c c c c}
+			Source & d.f. & SS & MS & F & p \\
+			\hline
+			Blocks & $b-1$ & $SS_B$ & $MS_B$ & $F_B$ & $p_B$ \\
+			Treatment & $k-1$ & $SS_T$ & $MS_T$ & $F_T$ & $p_T $\\
+			Error & $rbk-b-k+1$ & $SS_W$ & $MS_W$ & & \\
+			\hline
+			Total& $rbk-1$ & $SS_{Tot}$ & & &\\
+		\end{tabular}
+	\end{center}
+
+		\subsubsection{LSD for two-way ANOVA with replications}
+		Block effect: 
+		$$t_{rbk-b-k+1;\alpha/2} \sqrt{2\frac{s^2}{rk}}$$
+		Treatment effect: 
+		$$t_{rbk-b-k+1;\alpha/2} \sqrt{2\frac{s^2}{rb}}$$
+
+	\end{multicols}
+	
+\end{document}

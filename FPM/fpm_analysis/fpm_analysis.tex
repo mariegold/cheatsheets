@@ -1,0 +1,300 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+\usepackage[applemac]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% New commands
+\newcommand{\dom}[1]{\textrm{dom}\!\left(#1\right)}
+\newcommand{\im}[1]{\textrm{im}\!\left(#1\right)}
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Environments
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{FPM Analysis } \\
+     \footnotesize{Marie Biolkov\'a and Sebastian M\"uksch}
+\end{center}
+
+\section{The Real Numbers} 
+
+	\subsection{The Triangle Inequality}
+	\begin{itemize}
+		\item $|a+b| \leq |a| + |b|$
+		\item $ ||a| - |b| \leq |a-b|$
+	\end{itemize}
+
+	\textbf{Approximation Property} If the set $E \subset \mathbb{R} $ has a supremum then for any positive number $\varepsilon > 0$ there exists $a \in E $ such that sup $E - \varepsilon < a \leq $ sup $E$. \\
+
+	\emph{Remark:} If $E \subset \mathbb{N} $ has a supremum then sup $E \in E$.
+
+	\textbf{Archimedean Principle} Given positive real numbers $a,b \in \mathbb{R}$ there is an integer $n \in \mathbb{N} $ such that $b<na$.
+
+	\textbf{The Completeness Axiom} If $E \subset \mathbb{R}$ is non empty and bounded above then $E$ has a supremum.
+	
+	\begin{itemize}
+		\item Set $E$ has a supremum iff the set $-E$ has an infinum and inf$(-E) = -$ sup$E$.
+		\item Set $E$ has an infinum iff the set $-E$ has a supremum and sup$(-E) = -$ inf$E$.
+	\end{itemize}
+
+	\textbf{Monotone Property} If $ A \subset B$ are two nonempty subsets of $\mathbb{R}$ and $B$ is bounded above then sup$A \leq $ sup$B$. If $B$ is bounded below then inf$A \geq$ inf$B$.
+
+	\textbf{Bernouilli's Inequality} Let $n > 0, x \geq -1$, then %For any $x \in \mathbb{R}$ with $x \geq 1$ and any $ n \in \mathbb{N} $ we have $(1+x)^n \geq 1+nx$. 
+	\begin{itemize}
+		\item $(1+x)^n \leq 1+nx$ if $n \in (0,1]$ 
+		\item $(1+x)^n \geq 1+nx$ if $n \in [1,\infty].$ 
+	\end{itemize}
+
+\section{Sequences}
+A sequence of real numbers $(x_n)$ is said to \emph{converge} to a real number $a$ if for every $\varepsilon>0$ there is $N \in \mathbb{N}$ such that for all $n \geq N$ we have $|x_n -a| < \varepsilon$.
+
+\begin{itemize}
+	\item Every convergent sequence is bounded.
+\end{itemize}
+
+\textbf{The Squeeze Theorem} Suppose $(x_n), (y_n),(w_n)$ are real sequences.
+
+\begin{itemize}
+	\item If both $x_n \rightarrow a$ and $y_n \rightarrow a$ (same $a$!) as $n \rightarrow \infty$ and if \[ x_n \leq w_n \leq y_n \text{ for all } n \geq N_0 \] then $w_n \rightarrow a$ as $n \rightarrow \infty$.
+	\item If $x_n \rightarrow 0$ and $(y_n)$ is bounded then the product $x_n y_n \rightarrow 0 $ as $n \rightarrow \infty$. 
+\end{itemize}
+
+\textbf{Theorem 2.2.3} Let $E \subset \mathbb{R}$. If $E$ has a finite supremum, i.e. $E$ is bounded above, then there is a sequence $(x_n)$ with $x_n \in E$ such that $x_n \rightarrow \sup E$ as $n \rightarrow \infty$. An analogous statement holds if $E$ has finite infinum (i.e. bounded below).
+
+\textbf{Comparision Theorem for Sequences} Suppose $(x_n), (y_n) $ are real sequences. If both $\displaystyle \lim_{n \rightarrow \infty} x_n$ and $\displaystyle \lim_{n \rightarrow \infty} y_n$ exist in $\mathbb{R}^{*}$ and if $x_n \leq y_n$ for all $n \geq N$ for some $N \in \mathbb{N}$ then $\displaystyle  \lim_{n \rightarrow \infty} x_n \leq \displaystyle  \lim_{n \rightarrow \infty} y_n$.
+
+\textbf{Monotone Convergence} If $(x_n)$ is increasing and bounded above or if it is decreasing and bounded below, then $(x_n)$ is convergent (and converges to the supremum/infimum of the set $\{x_n | n \in \mathbb{N} \} $ respectively.
+
+\begin{itemize}
+	\item $ \lim \sup x_n = \displaystyle \lim_{N \rightarrow \infty} \sup \{x_n | n >N\}$
+	\item $ \lim \inf x_n =  \displaystyle \lim_{N \rightarrow \infty} \inf \{x_n | n >N\}$
+\end{itemize}
+
+\textbf{Theorem 2.3.7} Let $(x_n)$ be a sequence of real numbers then  $\displaystyle  \lim_{n \rightarrow \infty} x_n$ exists as $\mathbb{R}^{*}$ iff $ \displaystyle  \lim \sup x_n = \displaystyle  \lim \inf x_n $ in which case $\displaystyle  \lim \sup x_n =\displaystyle  \lim \inf x_n =\displaystyle   \lim_{n \rightarrow \infty} x_n.$
+
+	\subsection{Cauchy Sequences}
+	A sequence $(x_n)$ of numbers $x_n \in \mathbb{R}$ is said to be \emph{Cauchy } if $\forall \varepsilon > 0$ there is $N \in \mathbb{N}$ such that \[|x_n - x_m| < \varepsilon \quad \forall n,m \geq N.\] \\
+	A sequence of real numbers $x_n$ is a Cauchy sequence $\iff (x_n)$ converges.
+
+	\subsection{Subsequences}
+	\textbf{Theorem 2.4.3} Let $(x_n)$ be a sequence of real numbers.
+	\begin{itemize}
+		\item There exists $t \in \mathbb{R}$ such that $\forall \varepsilon > 0$ there exist infinitely many $ n \in \mathbb{N}$ for which $|x_n-t| < \varepsilon \iff $ there exists a subsequence of $(x_n)$ converging to $t$.
+		\item The sequence is not bounded above (below) $\iff$ there exists a subsequence converging to $\infty$ (converging to $-\infty$).
+	\end{itemize}
+
+\textbf{Theorem 2.4.4} Every sequence of real numbers has a monotone subsequence.\\
+\textbf{Theorem 2.4.5} Every bounded monotone sequence converges.\\
+\textbf{Bolzano-Weierstrass} Every bounded sequence of real numbers has a convergent subsequence.
+
+
+	\subsection{Useful Limits of Sequences}
+	\begin{itemize}
+		\item $a^{\frac{1}{n}} \rightarrow 1$ as $ n \rightarrow \infty$, provided $a>0$
+		\item $(1+\frac{1}{n})^n \rightarrow e$ as $ n \rightarrow \infty$
+		\item $(1-\frac{1}{n})^n \rightarrow \frac{1}{e}$ as $ n \rightarrow \infty$
+	\end{itemize}
+
+\section{Infinite Series}
+Let $S = \displaystyle \sum_{k=1}^{\infty} a_k$ be an infinite series with terms $a_k$. For each $n$ define the partial sum by $s_n = \displaystyle \sum_{k=1}^{n} a_k$. $S$ is said to converge $\iff$ the sequence of partial sums $(s_n)$ converges to some $s \in \mathbb{R}$. That is $\forall \varepsilon>0$ there exists $N \in \mathbb{N}$ such that if $n \geq N$ we have $$|s_n - s| = \abs*{\displaystyle \sum_{k=1}^{n} a_k - s} < \varepsilon. $$
+If the sequence of partial sums diverges then $S$ diverges.\\
+
+\textbf{Theorem 3.2.1} Suppose $a_k \geq 0$ for large $k$. Then $\displaystyle  \sum_{k=1}^{\infty}a_k $ converges $\iff (s_n)$ is bounded. That is $\exists M>0$ such that $\abs*{\displaystyle  \sum_{k=1}^{n}a_k} \leq M$ for all $n \in \mathbb{N}$.
+
+\textbf{Cauchy Criterion} The infinite series $\sum_{k=1}^{\infty} a_k$ converges $\iff \forall \varepsilon >0$ there is $N \in \mathbb{N}$ such that $\forall m\geq n \geq N$ we have $ \abs*{\displaystyle \sum_{k=n}^{m} a_k} < \varepsilon.$
+
+\textbf{Harmonic Series} The series $\displaystyle \sum_{k=1}^{\infty} \frac{1}{k} $ diverges.\\
+
+\textbf{Divergence Test} Let $(a_k)$ be a sequence. If $a_k$ does not converge to 0 then $\displaystyle \sum_{k=1}^{\infty}a_k$ diverges.\\
+\textbf{Geometric Series} Let $x \in \mathbb{R}$ and $N \in \{0,1,2,...\}.$ Then the series $\displaystyle  \sum_{k=N}^{\infty} x^k$ converges $\iff |x| < 1$. In this case $\displaystyle \sum_{k=N}^{\infty} x^k = \frac{x^N}{1-x}$. In particular, \vspace{-0.7\baselineskip} $$ \displaystyle \sum_{k=0}^{\infty} x^k = \frac{1}{1-x} \quad |x| < 1.$$
+
+\textbf{Comparison Test} Suppose $0 \leq a_k \leq b_k$ for large $k$. 
+\begin{itemize}
+	\item If $ \displaystyle \sum_{k=1}^{\infty}b_k < \infty$ then $\displaystyle \sum_{k=1}^{\infty} a_k < \infty$.
+	\item  If $ \displaystyle \sum_{k=1}^{\infty}a_k = \infty$ then $\displaystyle \sum_{k=1}^{\infty} b_k = \infty$.
+\end{itemize}
+
+\textbf{Limit Comparison Test} Suppose $0 \leq a_k, 0 < b_k$ for large $k$ and $ L = \lim_{n\rightarrow \infty} \frac{a_n}{b_n}$ exists as an extended real number.
+\begin{itemize}
+	\item If $L \in (0,\infty)$ then $\displaystyle \sum_{k=1}^{\infty} a_k$ converges $\iff \displaystyle \sum_{k=1}^{\infty} b_k$ converges.
+	\item If $L = 0 $ and $\displaystyle \sum_{k=1}^{\infty} b_k$ converges then $ \displaystyle \sum_{k=1}^{\infty} a_k$ converges.
+	\item If $L = \infty $ and $\displaystyle \sum_{k=1}^{\infty} b_k$ diverges then $ \displaystyle \sum_{k=1}^{\infty} a_k$ diverges.
+\end{itemize}
+
+\textbf{Root Test} Suppose that $r = \lim_{k \rightarrow \infty} |a_k|^{\frac{1}{k}}$ exists. If 
+\begin{itemize}
+	\item $r<1$ then $\displaystyle \sum_{k=1}^{\infty}a_k$ converges absolutely.
+	\item $r>1$ then $\displaystyle \sum_{k=1}^{\infty}a_k$ diverges.
+\end{itemize}
+
+\textbf{Absolute Convergence}
+\begin{itemize}
+	\item A series converges \emph{absolutely} if $ \displaystyle \sum_{k=1}^{\infty}|a_k| < \infty$.
+	\item A series $S$ converges \emph{conditionally} if $S$ converges but $\displaystyle \sum_{k=1}^{\infty}|a_k|$ diverges.
+	\item A series converges absolutely $\iff \forall \varepsilon>0$ there is $N\in \mathbb{N}$ such that $\forall m \geq n \geq N$, $ \displaystyle \sum_{k=1}^{\infty}|a_k| < \varepsilon.$
+	\item If a series converges absolutely then the series converges, but not conversely.
+\end{itemize}
+
+\textbf{Cauchy's Condensation Test} Let $\displaystyle \sum_{k=1}^{\infty} a_k$ be a series of non-negative terms and assume $(a_k)$ is a decreasing sequence. If $\displaystyle \sum_{k=1}^{\infty} 2^n a_{2^n}$ converges then $\displaystyle \sum_{k=1}^{\infty} a_k$ converges.
+
+\textbf{Telescopic Series} Let $(b_k)$ be a convergent sequence. \\Then $\displaystyle \sum_{k=1}^{\infty}(b_k - b_{k+1}) = b_1 - \lim_{k \rightarrow \infty} b_k.$
+
+\textbf{Ratio Test} Let $a_k \in \mathbb{R}$ and assume $r = \lim_{k \to \infty} \frac{|a_{k+1}|}{|a_k|}$ exists in $\mathbb{R}^*$:
+
+    \begin{itemize}
+        \item $r < 1 \implies \displaystyle \sum_{k=1}^{\infty}a_k$ converges absolutely.
+        \item $r > 1 \implies \displaystyle \sum_{k=1}^{\infty}a_k$ diverges.
+    \end{itemize}
+
+\textbf{Integral Test} $f\!: [1, \infty) \to \mathbb{R}$ positive and decreasing on $[1, \infty)$. Let $a_k = f(k)$ then $$\sum_{k=1}^{\infty} a_k = \displaystyle \sum_{k=1}^{\infty} f(k) \,\textrm{converges} \iff \int_1^{\infty}f(x)dx < \infty.$$
+
+\textbf{p-series Test} The series $\displaystyle \sum_{k=1}^{\infty} \frac{1}{k^p}$ is convergent if and only if $p > 1$.
+
+\textbf{Alternating Sign Series} Let $(a_k)$ be non-negative, decreasing series such that $\displaystyle \lim_{k \to \infty} a_k = 0$. Then $\displaystyle \sum_{k=1}^{\infty}(-1)^ka_k$ is convergent.
+
+\section{Continuity}
+$f\!: \dom{f} \to \mathbb{R}$ is continuous if there exists sequence $(x_n)$ in $\dom{f}$ s.t. $\displaystyle \lim_{n \to \infty}{x_n} = a$. We have $\displaystyle \lim_{n \to \infty} f(x_n) = f(a)$.
+
+\textbf{$\varepsilon\!-\!\delta$ definition:} $f\!: \dom{f} \to \mathbb{R}$ continuous at $a \in \dom{f}$ iff \[ \forall \varepsilon > 0 \,\exists \delta: |x-a| < \delta \implies |f(x) - f(a)| < \varepsilon. \]
+
+\begin{itemize}
+    \item $f$ continuous at $a$ $\iff$ $\lim_{x \to a} f(x) = f(a)$.
+    \item $f$ continuous at $a \in \mathbb{R}$ and $g$ continuous at $f(a)$, then $g \circ f$ continuous at $a$.
+\end{itemize}
+
+	\subsection{Extreme Value Theorem}
+	$I \subset \mathbb{R}$ \emph{closed and bounded} and $f$ continuous on $I$, then $\exists x_m, x_M \in I$ such that
+
+	\begin{itemize}
+ 	   \item $f(x_m) = \inf\{f(x) | x \in I\}$.
+ 	   \item $f(x_M) = \sup\{f(x) | x \in I\}$.
+	\end{itemize}
+
+	\textbf{Lemma 4.2.4:} Let $I$ open interval and $f\!: I \to \mathbb{R}$ continuous at $a \in I$ and $f(a) > 0$, then for some $\delta, \varepsilon > 0$ we have $$ f(x) > \varepsilon,\, \forall x \in (a-\delta, a+\delta).$$
+
+	\subsection{Intermediate Value Theorem}
+	$I$ non-degenerate interval and $f: I \to \mathbb{R}$ continuous. Let $a,b \in I$, $a<b$ then:
+	$$\forall y_0 \in (f(a),f(b)) \,\exists x_0 \in (a,b): f(x_0) = y_0.$$
+
+\textbf{Bolzano's Theorem}
+$f$ continuous on $[a,b]$ s.t. $f(a)f(b) < 0$, then $\exists c \in (a,b): f(c) = 0$.
+
+\begin{itemize}
+    \item $f\: [a,b] \to \mathbb{R}$ strictly increasing such that $\im{f}$ is an interval, then $f$ continuous on $[a,b]$.
+    \item $f\: [a,b] \to \mathbb{R}$ continuous strictly increasing, then $f^{-1}\: [f(a),f(b)] \to \mathbb{R}$ continuous strictly increasing.
+\end{itemize}
+
+	\subsection{Limits of Functions}
+	$f\!: \dom{f} \to \mathbb{R}$, $a \in \mathbb{R}^*$, then $\lim_{x \to a} f(x) = L$ for $L \in \mathbb{R}^*$ if for \emph{every} sequence $(x_n)$ in $\dom{f}$ which converges to $a$ we have $\lim_{n \to \infty} f(x_n) = L$.
+
+	\textbf{Comparison Theorem for Functions} $a \in \mathbb{R}$ and $I$ open interval s.t. $a \in I$. If $f,g$ are defined everywhere on $I \setminus \{a\}$ and have limits as $x \to a$ then $$ f(x) \leqslant g(x),\,\forall x \in I \setminus \{a\}  \implies \lim_{x \to a}f(x) \leqslant \lim_{x \to a} g(x).$$
+
+\section{Differentiability}
+$f\!: I \to \mathbb{R}$ is differentiable on $a \in \mathbb{R}$ if $a \in I$ and $$ f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$
+
+\begin{itemize}
+    \item $f$ differentiable $\implies$ $f$ continuous.
+    \item $f$ continuously differentiable on $I$ if $f'$ exists and continuous on $I$.
+\end{itemize}
+
+\textbf{Rolle's Theorem} Let $a,b \in \mathbb{R}$, $a<b$. If $f$ continuous on $[a,b]$ and differentiable on $(a,b)$ and $f(a) = f(b)$, then $\exists c \in (a,b): f'(c) = 0$.
+
+	\subsection{Mean Value Theorem}
+	Let $a,b \in \mathbb{R}$, $a<b$. If $f$ continuous on $[a,b]$ and differentiable on $(a,b)$ then $\exists c \in (a,b)$ s.t.
+\vspace{-0.1\baselineskip} $$ f(b) - f(a) = f'(c)(b - a).$$
+
+	\textbf{Generalized Mean Value Theorem} If $f,g$ continuous on $[a,b]$ and differentiable on $(a,b)$ then $\exists c \in (a,b)$ s.t.  $$ f'(c)(g(b) - g(a)) = g'(c)(f(b) - f(a)).$$
+	
+    \columnbreak
+
+\textbf{L'H\^opital's Rule} Let $a \in \mathbb{R}^*$ and $I$ interval that contains $a$ or has endpoint $a$. Let $f,g$ differentiable on $I \setminus \{a\}$ and 
+
+    \begin{itemize}
+        \item $\forall x \in I \setminus \{a\}: g(x) \neq 0,\, g'(x) \neq 0$
+        \item $A = \displaystyle \lim_{x \to a} f(x) = \displaystyle \lim_{x \to a} g(x)$, $A \in \mathbb{R}^*$
+        \item $B = \displaystyle \lim_{x \to a} \frac{f'(x)}{g'(x)}$ exists with $B \in \mathbb{R}^*$
+    \end{itemize}
+    then \vspace{-\baselineskip} $$ \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}. $$
+        
+	\subsection{Monotone Functions}
+	\textbf{Theorem 5.4.3} Let $f$ be injective and continuous on $I$, then $f$ is strictly monotone on $I$ and $f^{-1}$ is continuous and strictly monotone on $f(I)$.
+
+	\textbf{Inverse Function Theorem} Let $f$ be injective and continuous on \emph{open} interval $I$. If $a \in f(I)$ and $f'$ exists at $f^{-1}(a)$ and is \emph{non-zero}, then $f^{-1}$ differentiable at $a$ and $$ \left(f^{-1}\right)'(a) = \frac{1}{f'\left(f^{-1}(a)\right)}.$$
+
+	\subsection{Taylor's Theorem}
+	\textbf{Taylor's Polynomial} Let $n \in \mathbb{N}$, $a,b \in \mathbb{R}^*$, $a < b$. If $f\!: (a,b) \to \mathbb{R}$ differentiable $n$-times at $x_0 \in (a,b)$, then Taylor's polynomial of degree $n$ is
+\vspace{-0.1\baselineskip} $$ P_n^{f,x_0} = \sum_{k = 0}^n \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k.$$
+
+	\textbf{Taylor's Formula} Let $n \in \mathbb{N}$, $a,b \in \mathbb{R}^*$, $a < b$. If $f\!: (a,b) \to \mathbb{R}$ and $f^{(n+1)}$ exists on $(a,b)$ then $\forall x,x_0 \in (a,b)$ $ \exists c \textrm{ between } x,x_0$ such that \vspace{-0.1\baselineskip} $$ f(x) = P_n^{f,x_0} + \frac{f^{(n+1)}(x_0)}{(n+1)!}(x-x_0)^{(n+1)}.$$ \emph{N.B.}: $c$ depends on $n$, $x$ and $x_0$.
+
+	\subsection{Useful Facts}
+	\begin{itemize}
+		\item The series \[\displaystyle \sum_{k=1}^{\infty}(-1)^k \frac{1}{k}, \displaystyle \sum_{k=2}^{\infty}(-1)^k \frac{1}{\log{k}}, \displaystyle \sum_{k=2}^{\infty}(-1)^k \frac{1}{k\log{k}} \] are all convergent (Corollary 3.4.2).\\
+		\item The \emph{radius of convergence} of $ \displaystyle \sum_{n=1}^{\infty}c_n (x-a)^n $ can be defined as $ R = \frac{1}{\lim \sup \sqrt[n]{|c_n|}} $.
+	\end{itemize}
+
+\end{multicols}
+
+\end{document}
