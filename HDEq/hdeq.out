@@ -1,0 +1,40 @@
+\BOOKMARK [1][-]{section*.1}{First Order ODEs}{}% 1
+\BOOKMARK [2][-]{section*.2}{Integrating Factors}{section*.1}% 2
+\BOOKMARK [3][-]{section*.3}{Exact ODEs}{section*.2}% 3
+\BOOKMARK [2][-]{section*.4}{Wronskian}{section*.1}% 4
+\BOOKMARK [2][-]{section*.5}{Undetermined Coefficients: Repeated Roots}{section*.1}% 5
+\BOOKMARK [2][-]{section*.6}{Variation of Parameters}{section*.1}% 6
+\BOOKMARK [1][-]{section*.7}{Laplace Transforms}{}% 7
+\BOOKMARK [2][-]{section*.8}{Unit Step Function}{section*.7}% 8
+\BOOKMARK [3][-]{section*.9}{Dirac Distribution}{section*.8}% 9
+\BOOKMARK [2][-]{section*.10}{Convolution}{section*.7}% 10
+\BOOKMARK [1][-]{section*.11}{First-Order Systems of ODEs}{}% 11
+\BOOKMARK [2][-]{section*.12}{From n-th order to system of first-order ODEs}{section*.11}% 12
+\BOOKMARK [1][-]{section*.13}{Homogeneous Systems of Linear ODEs}{}% 13
+\BOOKMARK [2][-]{section*.14}{Different Eigenvalues: Real}{section*.13}% 14
+\BOOKMARK [3][-]{section*.15}{Different Eigenvalues: Complex}{section*.14}% 15
+\BOOKMARK [3][-]{section*.16}{Fundamental Matrix}{section*.14}% 16
+\BOOKMARK [2][-]{section*.17}{Repeated Eigenvalues}{section*.13}% 17
+\BOOKMARK [1][-]{section*.18}{Nonhomogeneous Systems of ODEs}{}% 18
+\BOOKMARK [2][-]{section*.19}{Diagonalisation}{section*.18}% 19
+\BOOKMARK [3][-]{section*.20}{Method of Undetermined Coefficients}{section*.19}% 20
+\BOOKMARK [3][-]{section*.21}{Variation of Parameters}{section*.19}% 21
+\BOOKMARK [1][-]{section*.22}{Qualitative Theory of ODEs}{}% 22
+\BOOKMARK [2][-]{section*.23}{Critical Points}{section*.22}% 23
+\BOOKMARK [2][-]{section*.24}{Lyapunov's Theory}{section*.22}% 24
+\BOOKMARK [2][-]{section*.25}{Limit Cycles}{section*.22}% 25
+\BOOKMARK [1][-]{section*.26}{Fourier Series}{}% 26
+\BOOKMARK [2][-]{section*.27}{Euler-Fourier Formulas}{section*.26}% 27
+\BOOKMARK [3][-]{section*.28}{Parseval's Theorem}{section*.27}% 28
+\BOOKMARK [1][-]{section*.29}{Partial Differential Equations}{}% 29
+\BOOKMARK [2][-]{section*.30}{Heat Equation}{section*.29}% 30
+\BOOKMARK [3][-]{section*.31}{Wave Equation}{section*.30}% 31
+\BOOKMARK [3][-]{section*.32}{Laplace's Equation}{section*.30}% 32
+\BOOKMARK [2][-]{section*.33}{Sturm-Liouville Boundary Problems}{section*.29}% 33
+\BOOKMARK [3][-]{section*.34}{Homogeneous Problems}{section*.33}% 34
+\BOOKMARK [3][-]{section*.35}{Nonhomogeneous Problems}{section*.33}% 35
+\BOOKMARK [3][-]{section*.36}{Wave equation in 2D}{section*.33}% 36
+\BOOKMARK [3][-]{section*.37}{Third Laplace's Equation in Cylindrical Coordinates}{section*.33}% 37
+\BOOKMARK [2][-]{section*.38}{Useful Facts}{section*.29}% 38
+\BOOKMARK [3][-]{section*.39}{Polar coordinates}{section*.38}% 39
+\BOOKMARK [3][-]{section*.40}{Cylindrical coordinates}{section*.38}% 40
