@@ -1,6 +1,6 @@
 # Maths Cheatsheets
 
-### From my undegreaduate degree at The University of Edinburgh (2016-2020)
+### From my undergraduate degree at The University of Edinburgh (2016-2020)
 
 **Disclaimer**: Use at your own risk.
 
